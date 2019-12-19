@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiValuedQuery", "MultiValuedQuery\MultiValuedQuery.csproj", "{1561B092-CE7B-4AE2-BE33-2148370FA77F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiValuedQueryTests", "MultiValuedQueryTests\MultiValuedQueryTests.csproj", "{5C377BCC-CAAF-405A-83A0-43FBF8AEF69B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1561B092-CE7B-4AE2-BE33-2148370FA77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1561B092-CE7B-4AE2-BE33-2148370FA77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1561B092-CE7B-4AE2-BE33-2148370FA77F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C377BCC-CAAF-405A-83A0-43FBF8AEF69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C377BCC-CAAF-405A-83A0-43FBF8AEF69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C377BCC-CAAF-405A-83A0-43FBF8AEF69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C377BCC-CAAF-405A-83A0-43FBF8AEF69B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
