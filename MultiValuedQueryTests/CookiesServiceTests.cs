@@ -83,6 +83,26 @@ namespace MultiValuedQuery.Tests
             expected.ShouldEqual(actual);
         }
 
+        [TestMethod()]
+        [TestCategory("GetProducts")]
+        public void GetProductsWithSpByEfExtrasTest()
+        {
+            // Arrange
+            var expected = new List<ViewProduct>
+            {   new ViewProduct() { ProductId = 5,  ProductName = "紅豆塔", CategoryId = 1, Price = 60, CategoryName = "餅乾類"}
+            ,   new ViewProduct() { ProductId = 12, ProductName = "紅豆奶酪", CategoryId = 3, Price = 80, CategoryName = "奶酪類"}
+            }.ToExpectedObject();
+
+            var categories = new List<int>() { 1, 2, 3 };
+            var productName = "紅豆";
+
+            // Act
+            var obj = new CookiesService();
+            var actual = obj.GetProductsWithSpByEfExtras(categories, productName);
+
+            // Assert
+            expected.ShouldEqual(actual);
+        }
 
     }
 }

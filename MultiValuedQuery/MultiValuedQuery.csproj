@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFrameworkExtras.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkExtras.EF6.1.0.0\lib\net45\EntityFrameworkExtras.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CookiesService.cs" />
+    <Compile Include="EfExtras\GetProductsByCategories.cs" />
     <Compile Include="Models\Database\Category.cs">
       <DependentUpon>MyCookies1.tt</DependentUpon>
     </Compile>
