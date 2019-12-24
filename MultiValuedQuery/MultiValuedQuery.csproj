@@ -89,6 +89,7 @@
       <DependentUpon>MyCookies1.edmx</DependentUpon>
       <LastGenOutput>MyCookies1.cs</LastGenOutput>
     </Content>
+    <Content Include="Sql\CreateStoredProcs.sql" />
     <Content Include="Sql\CreateTables.sql" />
   </ItemGroup>
   <ItemGroup>

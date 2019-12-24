@@ -81,5 +81,71 @@ WHERE		A.CategoryId    IN	"
             return products;
         }
 
+        /// <summary>
+        /// 傳入多個商品類別查詢產品, 以 Entity Framework 的 SqlQuery<T> 呼叫 stored procedure 進行處理
+        /// </summary>
+        /// <param name="categories"></param>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        public List<ViewProduct> GetProductsWithSpByEf(List<int> categories, string productName = "")
+        {
+            var result = new List<ViewProduct>();
+            _db.Database.Log = Console.Write;       // Entity Framework 產生的 SQL 指令, 由 Console.Write 輸出
+
+            //建立查詢條件的 DataTable (只包含 1 個 Column)
+            DataTable dt = new DataTable("MyTable");
+            dt.Columns.Add(new DataColumn("CategoryId", typeof(int)));
+            DataRow row = null;
+            foreach (var category in categories)
+            {
+                row = dt.NewRow();
+                row["CategoryId"] = category;
+                dt.Rows.Add(row);
+            }
+
+            //建立查詢參數
+            var para1 = new SqlParameter("@tbl_Categories", SqlDbType.Structured) { Value = dt };
+            var para2 = new SqlParameter("@pi_ProductName", SqlDbType.NVarChar, 30) { Value = productName };
+
+            //設定 SqlDbType.Structured 那個參數對應的 User Defined Type
+            para1.TypeName = "dbo.udt_CategoryId";
+            result = _db.Database.SqlQuery<ViewProduct>("exec usp_GetProductsByCategories @tbl_Categories, @pi_ProductName", para1, para2).ToList();
+
+            return result;
+        }
+
+        ///// <summary>
+        ///// 傳入多個商品類別查詢產品, 以 Entity Framework 的 SqlQuery<T> 呼叫 stored procedure 進行處理
+        ///// </summary>
+        ///// <param name="categories"></param>
+        ///// <param name="productName"></param>
+        ///// <returns></returns>
+        //public List<ViewProduct> GetProductsWithSpByEfExtras(List<int> categories, string productName = "")
+        //{
+        //    var result = new List<ViewProduct>();
+        //    _db.Database.Log = Console.Write;       // Entity Framework 產生的 SQL 指令, 由 Console.Write 輸出
+
+        //    //建立查詢條件的 DataTable (只包含 1 個 Column)
+        //    DataTable dt = new DataTable("MyTable");
+        //    dt.Columns.Add(new DataColumn("CategoryId", typeof(int)));
+        //    DataRow row = null;
+        //    foreach (var category in categories)
+        //    {
+        //        row = dt.NewRow();
+        //        row["CategoryId"] = category;
+        //        dt.Rows.Add(row);
+        //    }
+
+        //    //建立查詢參數
+        //    var para1 = new SqlParameter("@tbl_Categories", SqlDbType.Structured) { Value = dt };
+        //    var para2 = new SqlParameter("@pi_ProductName", SqlDbType.NVarChar, 30) { Value = productName };
+
+        //    //設定 SqlDbType.Structured 那個參數對應的 User Defined Type
+        //    para1.TypeName = "dbo.udt_CategoryId";
+        //    result = _db.Database.SqlQuery<ViewProduct>("exec usp_GetProductsByCategories @tbl_Categories, @pi_ProductName", para1, para2).ToList();
+
+        //    return result;
+        //}
+
     }
 }
